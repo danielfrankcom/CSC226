@@ -74,10 +74,12 @@ public class ShortestPath{
             q.add(tempNode);
         }
 
-        distance[source] = 0;
-
         while(!q.isEmpty()){
-            int currentVertex;
+            Node tempVert = q.poll();
+            for(int tempNeighbor = 0; tempNeighbor < numVerts; tempNeighbor++){
+                int alternate = distance[tempVert.id] + G[tempVert.id][tempNeighbor];
+                System.out.println(alternate);
+            }
         }
 
 
