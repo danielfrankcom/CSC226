@@ -36,13 +36,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.PriorityQueue;
 import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 
 //Do not change the name of the ShortestPath class
 public class ShortestPath{
 
     public static int numVerts;
-    public static int[][][] paths;
 
 
     /* ShortestPath(G)
@@ -56,7 +57,14 @@ public class ShortestPath{
     */
     static void ShortestPath(int[][] G, int source){
         numVerts = G.length;
-        paths = new int[numVerts][numVerts][];
+
+        Queue<Integer> q = new LinkedList<>();
+        int[] distance = new int[numVerts];
+        LinkedList<Integer>[] paths = new LinkedList[numVerts];
+
+        for(int i = 0; i < numVerts; i++){
+            q.add(i);
+        }
 
         PrintPaths(0);
 
@@ -64,7 +72,7 @@ public class ShortestPath{
 
     static void PrintPaths(int source){
         for(int i = 0; i < source; i++){
-            System.out.println(paths[source][i]);
+            System.out.println("print here");
         }
     }
 
