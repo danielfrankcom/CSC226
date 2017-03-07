@@ -37,7 +37,7 @@ import java.io.FileNotFoundException;
 import java.util.PriorityQueue;
 import java.util.Stack;
 import java.util.LinkedList;
-import java.util.Queue;
+import java.util.PriorityQueue;
 
 
 //Do not change the name of the ShortestPath class
@@ -56,15 +56,31 @@ public class ShortestPath{
         No entries of G will be negative.
     */
     static void ShortestPath(int[][] G, int source){
+
         numVerts = G.length;
 
-        Queue<Integer> q = new LinkedList<>();
         int[] distance = new int[numVerts];
+        distance[source] = 0;
+
+        PriorityQueue<Node> q = new PriorityQueue<>();
+
         LinkedList<Integer>[] paths = new LinkedList[numVerts];
 
-        for(int i = 0; i < numVerts; i++){
-            q.add(i);
+        for(int tempVert = 0; tempVert < numVerts; tempVert++){
+            if(tempVert != source){
+                distance[tempVert] = Integer.MAX_VALUE;
+            }
+            Node tempNode = new Node(tempVert, distance[tempVert]);
+            q.add(tempNode);
         }
+
+        distance[source] = 0;
+
+        while(!q.isEmpty()){
+            int currentVertex;
+        }
+
+
 
         PrintPaths(0);
 
@@ -75,7 +91,6 @@ public class ShortestPath{
             System.out.println("print here");
         }
     }
-
 
     /* main()
        Contains code to test the ShortestPath function. You may modify the
@@ -131,5 +146,25 @@ public class ShortestPath{
         }
         graphNum--;
         System.out.printf("Processed %d graph%s.\nAverage Time (seconds): %.2f\n",graphNum,(graphNum != 1)?"s":"",(graphNum>0)?totalTimeSeconds/graphNum:0);
+    }
+}
+
+class Node implements Comparable<Node>{
+    public int distance, id;
+
+    public Node(int id, int dist){
+        this.id = id;
+        this.distance = dist;
+    }
+
+    @Override
+    public int compareTo(Node t) {
+        if(distance == t.distance){
+            return 0;
+        }else if(distance < t.distance){
+            return -1;
+        }else{
+            return 1;
+        }
     }
 }
