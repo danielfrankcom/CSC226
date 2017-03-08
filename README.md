@@ -2,4 +2,4 @@
 
 #Algorithms & Data Structures II
 
-Contains coursework for the course.
+Contains assignments and coursework.
