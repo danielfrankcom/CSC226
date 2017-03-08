@@ -43,7 +43,7 @@ import java.util.PriorityQueue;
 public class ShortestPath{
 
     public static int numVerts;
-    public static String[][] allPaths;
+    public static Node[] nodes;
 
 
     /* ShortestPath(G)
@@ -59,11 +59,7 @@ public class ShortestPath{
 
         numVerts = G.length;
 
-        if(allPaths == null){
-            allPaths = new String[numVerts][];
-        }
-
-        Node[] nodes = new Node[numVerts];
+        nodes = new Node[numVerts];
         Node sourceNode = new Node(source, 0);
         nodes[source] = sourceNode;
 
@@ -77,27 +73,36 @@ public class ShortestPath{
                 nodes[tempVert] = tempNode;
             }
             q.add(nodes[tempVert]);
-            paths[tempVert] = "0";
+            paths[tempVert] = Integer.toString(source);
         }
 
         while(!q.isEmpty()){
             Node tempVert = q.poll();
-            for(int tempNeighbor = 0; tempNeighbor < numVerts; tempNeighbor++){
-                int alternate = tempVert.distance + G[tempVert.id][tempNeighbor];
-                if(alternate < nodes[tempNeighbor].distance){
-                    nodes[tempNeighbor].distance = alternate;
-                    paths[tempNeighbor] += "-->" + tempVert.id;
+            for(int neighborId = 0; neighborId < numVerts; neighborId++){
+                int weight = G[tempVert.getId()][neighborId];
+                if(weight != 0){
+                    Node tempNeighbor = nodes[neighborId];
+                    int alternate = tempVert.getDistance() + weight;
+                    if(alternate < tempNeighbor.getDistance()){
+                        q.remove(tempNeighbor);
+                        tempNeighbor.setDistance(alternate);
+                        tempNeighbor.setPrevious(tempVert);
+                        q.add(tempNeighbor);
+                    }
                 }
             }
         }
 
-        allPaths[source] = paths;
-
     }
 
-    static void PrintPaths(int source){
-        for(int i = 0; i < allPaths[source].length; i++){
-            System.out.println(allPaths[source][i]);
+    public static void PrintPaths(int source){
+        for(int i = 0; i < numVerts; i++){
+            Node curr = nodes[i];
+            while(curr.getPrevious() != null){
+                System.out.print("-->" + Node.getId());
+                curr = curr.getPrevious();
+            }
+            System.out.println();
         }
     }
 
@@ -159,11 +164,34 @@ public class ShortestPath{
 }
 
 class Node implements Comparable<Node>{
-    public int distance, id;
+    private static int id;
+    private int distance;
+    private Node previous;
 
     public Node(int id, int dist){
         this.id = id;
         this.distance = dist;
+        this.previous = null;
+    }
+
+    public static int getId(){
+        return id;
+    }
+
+    public int getDistance(){
+        return distance;
+    }
+
+    public void setDistance(int dist){
+        distance = dist;
+    }
+
+    public Node getPrevious(){
+        return previous;
+    }
+
+    public void setPrevious(Node prev){
+        previous = prev;
     }
 
     @Override
