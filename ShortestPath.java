@@ -43,6 +43,7 @@ import java.util.PriorityQueue;
 public class ShortestPath{
 
     public static int numVerts;
+    public static String[][] allPaths;
 
 
     /* ShortestPath(G)
@@ -57,6 +58,10 @@ public class ShortestPath{
     static void ShortestPath(int[][] G, int source){
 
         numVerts = G.length;
+
+        if(allPaths == null){
+            allPaths = new String[numVerts][];
+        }
 
         Node[] nodes = new Node[numVerts];
         Node sourceNode = new Node(source, 0);
@@ -85,17 +90,14 @@ public class ShortestPath{
                 }
             }
         }
-        System.out.println(paths[1]);
 
-
-
-        PrintPaths(0);
+        allPaths[source] = paths;
 
     }
 
     static void PrintPaths(int source){
-        for(int i = 0; i < source; i++){
-            System.out.println("print here");
+        for(int i = 0; i < allPaths[source].length; i++){
+            System.out.println(allPaths[source][i]);
         }
     }
 
