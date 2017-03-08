@@ -21,5 +21,10 @@
 	\begin{enumerate}
 		\item When a smaller tree is attached to a larger tree, the height of the smaller tree at least doubles, since $H_{small}<H_{large}$, meaning that the new height is $2H_{small}+(H_{large}-H_{small})$.
 		\newline Since this is the case, we know that there must be a logarithmic upper bound on the overall height of the tree, as the height of our smaller tree may only be doubled at most $logN$ times. This is due to the fact that doubling the height $logN$ times results in $N$ items in our tree, which by definition is the maximum.
+		
+		\item If Algorithm 4.10 did not compute the correct shortest paths for our graph, then it means that there is at least 1 edge which was not relaxed during the algorithm's operation.
+		\newline Since we start with a topological ordering, each edge may be relaxed only once, as there is no way for the distance from the source vertex to our current vertex to increase. This is because we have only previously considered vertices that come prior to our current vertex in the topological ordering, and are therefore closer to the source.
+		\newline Since every edge is only considered once, and optimally, it is not possible to have missed an edge relaxation in the process of traversing our graph.
+		\newline $\therefore$ by contradiction, the theorem is true.
 	\end{enumerate}
 \end{document}
