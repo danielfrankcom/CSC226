@@ -99,11 +99,11 @@ public class ShortestPath{
                 pathList.push(curr.getId());
                 curr = curr.getPrevious();
             }
-            System.out.print(source);
+            System.out.print("The path from " + source + " to " + i + " is: " + source);
             while(!pathList.isEmpty()){
                 System.out.print("-->" + pathList.pop());
             }
-            System.out.println();
+            System.out.println(" and the total distance is: " + nodes[i].getDistance());
         }
     }
 
