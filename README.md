@@ -1,5 +1,5 @@
-CSC 226
+##CSC 226
 
-Algorithms & Data Structures II: Assignment 3
+#Algorithms & Data Structures II
 
-See enclosed PDF for assignment details.
+Contains coursework for the course.
