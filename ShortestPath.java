@@ -64,16 +64,13 @@ public class ShortestPath{
         nodes[source] = sourceNode;
 
         PriorityQueue<Node> q = new PriorityQueue<>();
-
-        String[] paths = new String[numVerts];
+        q.add(sourceNode);
 
         for(int tempVert = 0; tempVert < numVerts; tempVert++){
             if(tempVert != source){
                 Node tempNode = new Node(tempVert, Integer.MAX_VALUE);
                 nodes[tempVert] = tempNode;
             }
-            q.add(nodes[tempVert]);
-            paths[tempVert] = Integer.toString(source);
         }
 
         while(!q.isEmpty()){
@@ -84,7 +81,6 @@ public class ShortestPath{
                     Node tempNeighbor = nodes[neighborId];
                     int alternate = tempVert.getDistance() + weight;
                     if(alternate < tempNeighbor.getDistance()){
-                        q.remove(tempNeighbor);
                         tempNeighbor.setDistance(alternate);
                         tempNeighbor.setPrevious(tempVert);
                         q.add(tempNeighbor);
@@ -97,10 +93,15 @@ public class ShortestPath{
 
     public static void PrintPaths(int source){
         for(int i = 0; i < numVerts; i++){
+            Stack<Integer> pathList = new Stack<>();
             Node curr = nodes[i];
             while(curr.getPrevious() != null){
-                System.out.print("-->" + Node.getId());
+                pathList.push(curr.getId());
                 curr = curr.getPrevious();
+            }
+            System.out.print(source);
+            while(!pathList.isEmpty()){
+                System.out.print("-->" + pathList.pop());
             }
             System.out.println();
         }
@@ -164,7 +165,7 @@ public class ShortestPath{
 }
 
 class Node implements Comparable<Node>{
-    private static int id;
+    private int id;
     private int distance;
     private Node previous;
 
@@ -174,7 +175,7 @@ class Node implements Comparable<Node>{
         this.previous = null;
     }
 
-    public static int getId(){
+    public int getId(){
         return id;
     }
 
