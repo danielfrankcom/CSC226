@@ -26,5 +26,12 @@
 		\newline Since we start with a topological ordering, each edge may be relaxed only once, as there is no way for the distance from the source vertex to our current vertex to increase. This is because we have only previously considered vertices that come prior to our current vertex in the topological ordering, and are therefore closer to the source.
 		\newline Since every edge is only considered once, and optimally, it is not possible to have missed an edge relaxation in the process of traversing our graph.
 		\newline $\therefore$ by contradiction, the theorem is true.
+		
+		\item The complexity of Dijkstra's algorithm comes from the following equation:
+		\newline O($|E|*$time to decrease key+$|V|*$time to extract minimum)
+		\newline Since our PQ is unordered, the time to decrease the keys is not a factor, and is therefore 0, leaving us with simply:
+		\newline O($n*$time to extract minimum) - where $|V|=n$
+		\newline Since our PQ is unordered, the most efficient way that we can find the minimum element is by traversing the entire array. Therefore our final runtime is:
+		\newline O($n*n$)$=$O($n^2$)
 	\end{enumerate}
 \end{document}
