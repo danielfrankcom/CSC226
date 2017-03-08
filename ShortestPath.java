@@ -36,7 +36,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.PriorityQueue;
 import java.util.Stack;
-import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 
@@ -59,28 +58,34 @@ public class ShortestPath{
 
         numVerts = G.length;
 
-        int[] distance = new int[numVerts];
-        distance[source] = 0;
+        Node[] nodes = new Node[numVerts];
+        Node sourceNode = new Node(source, 0);
+        nodes[source] = sourceNode;
 
         PriorityQueue<Node> q = new PriorityQueue<>();
 
-        LinkedList<Integer>[] paths = new LinkedList[numVerts];
+        String[] paths = new String[numVerts];
 
         for(int tempVert = 0; tempVert < numVerts; tempVert++){
             if(tempVert != source){
-                distance[tempVert] = Integer.MAX_VALUE;
+                Node tempNode = new Node(tempVert, Integer.MAX_VALUE);
+                nodes[tempVert] = tempNode;
             }
-            Node tempNode = new Node(tempVert, distance[tempVert]);
-            q.add(tempNode);
+            q.add(nodes[tempVert]);
+            paths[tempVert] = "0";
         }
 
         while(!q.isEmpty()){
             Node tempVert = q.poll();
             for(int tempNeighbor = 0; tempNeighbor < numVerts; tempNeighbor++){
-                int alternate = distance[tempVert.id] + G[tempVert.id][tempNeighbor];
-                System.out.println(alternate);
+                int alternate = tempVert.distance + G[tempVert.id][tempNeighbor];
+                if(alternate < nodes[tempNeighbor].distance){
+                    nodes[tempNeighbor].distance = alternate;
+                    paths[tempNeighbor] += "-->" + tempVert.id;
+                }
             }
         }
+        System.out.println(paths[1]);
 
 
 
