@@ -33,5 +33,7 @@
 		\newline O($n*$time to extract minimum) - where $|V|=n$
 		\newline Since our PQ is unordered, the most efficient way that we can find the minimum element is by traversing the entire array. Therefore our final runtime is:
 		\newline O($n*n$)$=$O($n^2$)
+		
+		\item The Bellman-Ford algorithm, when run on a graph with no negative-weight cycles, finds the length of the shortest path from every vertex to every other. If the algorithm is run, and edges can still be relaxed, then it means not that the algorithm has missed an edge relaxation, but instead that this edge will continue to be relaxable to infinity. This is because a negative-weight cycle has no shortest path, as it will continue to decrease as more and more iterations are run. Therefore we can check to see if a graph has a negative-weight cycle by running one more iteration of the algorithm on an already completed list of path distances, and by comparing the 2 results, can determine if such a cycle exists.
 	\end{enumerate}
 \end{document}
