@@ -60,30 +60,30 @@ public class ShortestPath{
         numVerts = G.length;
 
         nodes = new Node[numVerts];
-        Node sourceNode = new Node(source, 0);
+        Node sourceNode = new Node(source, 0);  //Declare start node
         nodes[source] = sourceNode;
 
         PriorityQueue<Node> q = new PriorityQueue<>();
-        q.add(sourceNode);
+        q.add(sourceNode);  //Store initial vertex in queue of items to process
 
-        for(int tempVert = 0; tempVert < numVerts; tempVert++){
+        for(int tempVert = 0; tempVert < numVerts; tempVert++){ //Declare remaining nodes
             if(tempVert != source){
-                Node tempNode = new Node(tempVert, Integer.MAX_VALUE);
+                Node tempNode = new Node(tempVert, Integer.MAX_VALUE);  //Will definitely be replaced
                 nodes[tempVert] = tempNode;
             }
         }
 
-        while(!q.isEmpty()){
+        while(!q.isEmpty()){   //When items to process
             Node tempVert = q.poll();
             for(int neighborId = 0; neighborId < numVerts; neighborId++){
                 int weight = G[tempVert.getId()][neighborId];
-                if(weight != 0){
+                if(weight != 0){    //For adjacency vertices
                     Node tempNeighbor = nodes[neighborId];
                     int alternate = tempVert.getDistance() + weight;
-                    if(alternate < tempNeighbor.getDistance()){
+                    if(alternate < tempNeighbor.getDistance()){ //If improved path
                         tempNeighbor.setDistance(alternate);
                         tempNeighbor.setPrevious(tempVert);
-                        q.add(tempNeighbor);
+                        q.add(tempNeighbor);    //Process this one next
                     }
                 }
             }
@@ -96,12 +96,12 @@ public class ShortestPath{
             Stack<Integer> pathList = new Stack<>();
             Node curr = nodes[i];
             while(curr.getPrevious() != null){
-                pathList.push(curr.getId());
+                pathList.push(curr.getId());    //Add nodes to stack in reverse
                 curr = curr.getPrevious();
             }
             System.out.print("The path from " + source + " to " + i + " is: " + source);
             while(!pathList.isEmpty()){
-                System.out.print("-->" + pathList.pop());
+                System.out.print("-->" + pathList.pop());   //Print in correct order from stack
             }
             System.out.println(" and the total distance is: " + nodes[i].getDistance());
         }
@@ -164,7 +164,7 @@ public class ShortestPath{
     }
 }
 
-class Node implements Comparable<Node>{
+class Node implements Comparable<Node>{ //Class to store nodes for processing
     private int id;
     private int distance;
     private Node previous;
@@ -196,7 +196,7 @@ class Node implements Comparable<Node>{
     }
 
     @Override
-    public int compareTo(Node t) {
+    public int compareTo(Node t) {  //Return appropriate node for PriorityQueue
         if(distance == t.distance){
             return 0;
         }else if(distance < t.distance){
