@@ -61,3 +61,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+*.bbl
+*.blg
+*.gz
+As3w/As3w.aux
+*.log
