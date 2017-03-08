@@ -19,6 +19,7 @@
 	\pagenumbering{arabic}
 	
 	\begin{enumerate}
-		\item 
+		\item When a smaller tree is attached to a larger tree, the height of the smaller tree at least doubles, since $H_{small}<H_{large}$, meaning that the new height is $2H_{small}+(H_{large}-H_{small})$.
+		\newline Since this is the case, we know that there must be a logarithmic upper bound on the overall height of the tree, as the height of our smaller tree may only be doubled at most $logN$ times. This is due to the fact that doubling the height $logN$ times results in $N$ items in our tree, which by definition is the maximum.
 	\end{enumerate}
 \end{document}
