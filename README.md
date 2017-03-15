@@ -1,5 +1,5 @@
-##CSC 226
+## CSC 226
 
-#Algorithms & Data Structures II
+# Algorithms & Data Structures II
 
 Contains assignments and coursework.
