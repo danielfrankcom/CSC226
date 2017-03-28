@@ -66,3 +66,5 @@ $RECYCLE.BIN/
 *.gz
 As3w/As3w.aux
 *.log
+*.aux
+As4w/As4w.synctex.gz(busy)
