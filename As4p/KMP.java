@@ -8,20 +8,30 @@ Rahnuma Islam Nishat - 08/02/2014
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 
 
 public class  KMP{
-    private static String pattern;
 
+    private static String pattern;
+    private static int[][] dfs;
+
+    public static int search(String txt){
+
+        int numChars = txt.length();
+        int pointer = 0;
+        for(int i = 0; i < numChars ; i++){
+            if((int) txt.charAt(i) == dfs[0][pointer]){
+                pointer ++;
+                System.out.println(i);
+            }
+        }
+
+        return 0;
+
+    }
 
     public KMP(String pattern){
-        DFS(pattern);
-    }
-    public static int search(String txt){
-    	return 0;
-    }
-
-    public int[][] DFS(String pattern){
 
         int numChars = pattern.length();
         int[] characters = new int[numChars];
@@ -32,17 +42,24 @@ public class  KMP{
         int[] locations = new int[numChars];
         for(int i = 0; i < numChars; i++){
             String tempStr = pattern.substring(0, i);
-            int tempStrLen = i;
+            int tempStrLen = i - 1;
             while(tempStrLen > 0){
-                System.out.println(tempStr);
+                System.out.println(i + ": " + tempStr);
+                System.out.println(pattern.substring(i - tempStrLen, i));
+                if(pattern.substring(i - tempStrLen, i).equals(tempStr)){
+                    locations[i] = tempStrLen;
+                    System.out.println("match");
+                }
+
                 tempStrLen -= 1;
                 tempStr = tempStr.substring(0, tempStrLen);
             }
             System.out.println();
 
         }
+        System.out.println(Arrays.toString(locations));
 
-        return null;
+        dfs = new int[][]{characters, locations};
 
     }
 
