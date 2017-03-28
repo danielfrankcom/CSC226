@@ -36,6 +36,11 @@
 		\draw[edge] (n2) to [out=180,in=90,looseness=4] (n2);
 		\draw[edge] (n3) to [out=360,in=90,looseness=4] (n3);
 		\draw[edge] (n4) to [out=360,in=270,looseness=4] (n4);
+		
 		\end{tikzpicture}
+		
+		\item Any example where both the search and pattern strings are entirely made up of one character performs poorly, as the algorithm is not able to skip forward when comparing characters.
+		\newline Search string:\hspace{10pt} "AAAAAAAAAAAAAAAA"
+		\newline Pattern string:\quad "AA"
 	\end{enumerate}
 \end{document}
