@@ -21,21 +21,34 @@
 	\pagenumbering{arabic}
 	
 	\begin{enumerate}
-		\item 
+		\item \quad
+		\newline
 		\begin{tikzpicture}
 		[scale=.8,auto=left,every node/.style={circle,fill=blue!40}, edge/.style={->,> = latex'}]
-		\node (n1) at (0,0)  {1};
-		\node (n2) at (0,2)  {2};
-		\node (n3) at (2,2)  {3};
-		\node (n4) at (2,0)  {4};
+		\node (n0) at (0,0)  {0};
+		\node (n1) at (2,0)  {1};
+		\node (n2) at (4,0)  {2};
+		\node (n3) at (6,0)  {3};
+		\node (n4) at (8,0)  {4};
+		\node (n5) at (10,0)  {5};
+		\node (n6) at (12,0)  {6};
 		
-		\foreach \from/\to in {n1/n4,n3/n4,n3/n1,n3/n2}
-		\draw[edge] (\from) to (\to);
+		\draw[edge] (n0) to node [above, fill=none] {a} (n1);
+		\draw[edge] (n1) to node [above, fill=none] {c} (n2);
+		\draw[edge] (n2) to node [above, fill=none] {a} (n3);
+		\draw[edge] (n3) to node [above, fill=none] {a} (n4);
+		\draw[edge] (n4) to node [above, fill=none] {a} (n5);
+		\draw[edge] (n5) to node [above, fill=none] {b} (n6);
 		
-		\draw[edge] (n1) to [out=180,in=270,looseness=4] (n1);
-		\draw[edge] (n2) to [out=180,in=90,looseness=4] (n2);
-		\draw[edge] (n3) to [out=360,in=90,looseness=4] (n3);
-		\draw[edge] (n4) to [out=360,in=270,looseness=4] (n4);
+		\draw[edge] (n0) to [out=45,in=135,looseness=4] node [above, fill=none] {b,c} (n0);
+		\draw[edge] (n1) to [out=270,in=310,looseness=0.5] node [below, fill=none] {b} (n0);
+		\draw[edge] (n1) to [out=45,in=135,looseness=4] node [above, fill=none] {a} (n1);
+		\draw[edge] (n2) to [out=270,in=270,looseness=0.9] node [below, fill=none] {b,c} (n0);
+		\draw[edge] (n3) to [out=270,in=270,looseness=1.2] node [below, fill=none] {b,c} (n0);
+		\draw[edge] (n4) to [out=270,in=270,looseness=1.4] node [below, fill=none] {b} (n0);
+		\draw[edge] (n4) to [out=110,in=60,looseness=0.8] node [above, fill=none] {c} (n2);
+		\draw[edge] (n5) to [out=270,in=270,looseness=1.4] node [below, fill=none] {b} (n0);
+		\draw[edge] (n5) to [out=110,in=60,looseness=1.2] node [above, fill=none] {c} (n2);
 		
 		\end{tikzpicture}
 		
