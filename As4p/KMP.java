@@ -10,17 +10,36 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 
-public class  KMP
-{
+public class  KMP{
     private static String pattern;
 
 
-    public KMP(String pattern)
-    {
+    public KMP(String pattern){
+        DFS(pattern);
     }
-    public static int search(String txt)
-    {
+    public static int search(String txt){
     	return 0;
+    }
+
+    public int[][] DFS(String pattern){
+
+        int numChars = pattern.length();
+        int[] characters = new int[numChars];
+        for(int i = 0; i < numChars; i++){
+            characters[i] = (int) pattern.charAt(i);
+        }
+
+        int[] locations = new int[numChars];
+        for(int i = 0; i < numChars; i++){
+            String tempStr = pattern.substring(0, i);
+            while(true){
+
+            }
+
+        }
+
+        return null;
+
     }
 
 
