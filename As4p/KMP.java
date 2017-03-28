@@ -18,12 +18,20 @@ public class  KMP{
 
     public static int search(String txt){
 
-        int numChars = txt.length();
-        int pointer = 0;
-        for(int i = 0; i < numChars ; i++){
-            if((int) txt.charAt(i) == dfs[0][pointer]){
-                pointer ++;
-                System.out.println(i);
+        int numCharsText = txt.length();
+        int numCharsPattern = dfs[0].length;
+        int patternPointer = 0;
+        int locationPointer = 0;
+        for(int i = 0; i < numCharsText ; i++){
+            if((int) txt.charAt(i) == dfs[0][patternPointer]){
+                patternPointer ++;
+                System.out.println(patternPointer);
+            }else{
+                patternPointer = dfs[1][patternPointer];
+            }
+            if(patternPointer == numCharsPattern){
+                System.out.println("found");
+                return 1;
             }
         }
 
