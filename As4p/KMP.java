@@ -32,9 +32,13 @@ public class  KMP{
         int[] locations = new int[numChars];
         for(int i = 0; i < numChars; i++){
             String tempStr = pattern.substring(0, i);
-            while(true){
-
+            int tempStrLen = i;
+            while(tempStrLen > 0){
+                System.out.println(tempStr);
+                tempStrLen -= 1;
+                tempStr = tempStr.substring(0, tempStrLen);
             }
+            System.out.println();
 
         }
 
