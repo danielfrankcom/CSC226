@@ -20,22 +20,19 @@ public class  KMP{
 
         int numCharsText = txt.length();
         int numCharsPattern = dfs[0].length;
-        int patternPointer = 0;
-        int locationPointer = 0;
+        int pointer = 0;
         for(int i = 0; i < numCharsText ; i++){
-            if((int) txt.charAt(i) == dfs[0][patternPointer]){
-                patternPointer ++;
-                System.out.println(patternPointer);
+            if((int) txt.charAt(i) == dfs[0][pointer]){
+                pointer ++;
             }else{
-                patternPointer = dfs[1][patternPointer];
+                pointer = dfs[1][pointer];
             }
-            if(patternPointer == numCharsPattern){
-                System.out.println("found");
-                return 1;
+            if(pointer == numCharsPattern){
+                return i - numCharsPattern + 1;
             }
         }
 
-        return 0;
+        return numCharsText;
 
     }
 
