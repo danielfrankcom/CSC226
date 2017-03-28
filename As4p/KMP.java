@@ -44,20 +44,16 @@ public class  KMP{
             String tempStr = pattern.substring(0, i);
             int tempStrLen = i - 1;
             while(tempStrLen > 0){
-                System.out.println(i + ": " + tempStr);
-                System.out.println(pattern.substring(i - tempStrLen, i));
                 if(pattern.substring(i - tempStrLen, i).equals(tempStr)){
                     locations[i] = tempStrLen;
-                    System.out.println("match");
                 }
 
                 tempStrLen -= 1;
                 tempStr = tempStr.substring(0, tempStrLen);
             }
-            System.out.println();
 
         }
-        System.out.println(Arrays.toString(locations));
+        //System.out.println(Arrays.toString(locations));
 
         dfs = new int[][]{characters, locations};
 
