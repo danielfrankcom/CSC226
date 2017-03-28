@@ -55,5 +55,11 @@
 		\item Any example where both the search and pattern strings are entirely made up of one character performs poorly, as the algorithm is not able to skip forward when comparing characters.
 		\newline Search string:\hspace{10pt} "AAAAAAAAAAAAAAAA"
 		\newline Pattern string:\quad "AA"
+		
+		\item
+		
+		\item
+		
+		\item This problem can be simply reduced to a max flow problem by creating a residual graph where each edge in $G$ is represented as an edge with flow 1. In this manner, when an arbitrary path is chosen during the computation of the max flow, the 1 unit of flow will no longer be available, so we will not choose another path which repeats the same edge.
 	\end{enumerate}
 \end{document}
