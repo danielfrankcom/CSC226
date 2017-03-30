@@ -57,8 +57,39 @@
 		\newline Pattern string:\quad "AA"
 		
 		\item
+		\begin{enumerate}
+			\item This statement is false
+			\newline A counterexample for this is the following:
+			\newline
+			\begin{tikzpicture}
+			[scale=.8,auto=left,every node/.style={circle,fill=blue!40}, edge/.style={->,> = latex'}]
+			\node (n0) at (0,2)  {s};
+			\node (n1) at (2,2)  {};
+			\node (n2) at (4,0)  {};
+			\node (n3) at (6,2)  {t};
+
+			\draw[edge] (n0) to node [above, fill=none] {1/1} (n1);
+			\draw[edge] (n1) to node [above, fill=none] {2/1} (n3);
+			\draw[edge] (n1) to node [below, fill=none] {3/0} (n2);
+			\draw[edge] (n2) to node [below, fill=none] {4/0} (n3);			
+			\end{tikzpicture}
+			\newline
+			\begin{tikzpicture}
+			[scale=.8,auto=left,every node/.style={circle,fill=blue!40}, edge/.style={->,> = latex'}]
+			\node (n0) at (0,2)  {s};
+			\node (n1) at (2,2)  {};
+			\node (n2) at (4,0)  {};
+			\node (n3) at (6,2)  {t};
+			
+			\draw[edge] (n0) to node [above, fill=none] {1/1} (n1);
+			\draw[edge] (n1) to node [above, fill=none] {2/0} (n3);
+			\draw[edge] (n1) to node [below, fill=none] {3/1} (n2);
+			\draw[edge] (n2) to node [below, fill=none] {4/1} (n3);			
+			\end{tikzpicture}
+		\end{enumerate}
 		
 		\item
+		
 		
 		\item This problem can be simply reduced to a max flow problem by creating a residual graph where each edge in $G$ is represented as an edge with flow 1. In this manner, when an arbitrary path is chosen during the computation of the max flow, the 1 unit of flow will no longer be available, so we will not choose another path which repeats the same edge.
 	\end{enumerate}
